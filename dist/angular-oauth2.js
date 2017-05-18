@@ -22,7 +22,7 @@
         return {
             request: function request(config) {
                 config.headers = config.headers || {};
-                if (!config.headers.hasOwnProperty("Authorization") && OAuthToken.getAuthorizationHeader()) {
+                if ((!config.headers.hasOwnProperty("Authorization") || typeof config.headers.Authorization !== "undefined") && OAuthToken.getAuthorizationHeader()) {
                     config.headers.Authorization = OAuthToken.getAuthorizationHeader();
                 }
                 return config;
